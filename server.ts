@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import connectDB from './config/db';
 import routes from './routes';
 
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
+app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:3001', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
